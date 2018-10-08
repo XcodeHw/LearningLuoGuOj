@@ -1,0 +1,64 @@
+/*********************************/
+题目描述
+Given two integers A and B, A modulo B is the remainder when dividing A by B. For example, the numbers 7, 14, 27 and 38 become 1, 2, 0 and 2, modulo 3. Write a program that accepts 10 numbers as input and outputs the number of distinct numbers in the input, if the numbers are considered modulo 42.
+
+输入输出格式
+输入格式：
+The input will contain 10 non-negative integers, each smaller than 1000, one per line.
+
+输出格式：
+Output the number of distinct values when considered modulo 42 on a single line.
+
+输入输出样例
+/********************************/
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	
+	int count = 1;
+	const int num = 10;
+	const int dd = 42;
+	int count2 = 0;
+	map<int,int>mpp;
+	map<int, int>::iterator it;
+	while (count <= num) {
+		int a;
+		cin >> a;
+		int temp = a%dd;
+		it = mpp.find(temp);
+		if (it == mpp.end()) {
+			count2++;
+			mpp[temp] = count;
+		}
+		count++;
+	}
+	cout << count2 << endl;
+
+    return 0;
+}
+//也可以用桶排序吧
+#include<iostream>
+using namespace std;
+#define N 10
+int temp[42];
+int num[11];
+int i,j,ans=0,c;
+int main(){
+for(i=0;i<N;i++)
+ {
+ cin>>num[i];
+ }
+ for(j=0;j<N;j++){
+ c=num[j]%42;
+ temp[c]++;
+ }
+ for(i=0;i<42;i++){
+ if(temp[i]!=){
+ ans++;
+ }
+ }
+ cout<<ans<<endl;
+ return 0;
+}
