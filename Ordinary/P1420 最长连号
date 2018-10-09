@@ -1,0 +1,62 @@
+//**********************************//
+题目描述
+输入n个正整数，（1<=n<=10000),要求输出最长的连号的长度。（连号指从小到大连续自然数）
+
+输入输出格式
+输入格式：
+第一行，一个数n;
+
+第二行，n个正整数，之间用空格隔开。
+
+输出格式：
+一个数，最长连号的个数。
+
+输入输出样例
+输入样例#1： 复制
+10
+3 5 6 2 3 4 5 6 8 9
+           
+输出样例#1： 复制
+5
+
+/********************************/
+
+#include"stdafx.h"
+#include<iostream>
+#include<stack>
+using namespace std;
+int main() {
+	int n;
+	cin >> n;
+	int count = 0;
+	int nums = 1;
+	int max = 1;
+	stack<int>result;
+	while (count < n) {
+		int a;
+		cin >> a;
+		
+		if (result.empty()) {
+			result.push(a);
+		}
+		else {
+			
+			if (result.top() == a - 1) {
+				nums++;
+				if(nums > max) {
+					max = nums;
+				}
+				
+			}
+			else {
+				nums = 1;
+			}
+			result.push(a);
+		}
+		count++;
+	}
+	
+	cout << max;
+	system("pause");
+	return 0;
+}
