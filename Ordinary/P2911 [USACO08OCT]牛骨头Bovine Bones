@@ -1,0 +1,60 @@
+/************************************************/
+
+贝西喜欢玩桌上扮演游戏（BRPG），所以她说服农场主约翰开车送她到商店，在那里她买了三个骰子。
+
+这三个骰子分别有S1、S2和S3个面。每个有S面的骰子每一面的点数分别是1,2,3……,S-1,S.
+
+贝西每次同时扔出三个骰子，她一直扔呀扔，试图找出三个骰子点数之和哪个出现的次数最多。
+
+现在给定三个骰子中每个骰子的面数，求三个骰子的点数和哪个最频繁出现。如果有多解，输出最小的一个。
+
+数据范围： （2＜S1<＝20；2 <＝S2<＝20；2 <＝S3<＝40）
+
+题目描述
+Bessie loves board games and role-playing games so she persuaded Farmer John to drive her to the hobby shop where she purchased three dice for rolling. These fair dice have S1, S2, and S3 sides
+
+respectively (2 <= S1 <= 20; 2 <= S2 <= 20; 2 <= S3 <= 40).
+
+Bessie rolls and rolls and rolls trying to figure out which three-dice sum appears most often.
+
+Given the number of sides on each of the three dice, determine which three-dice sum appears most frequently. If more than one sum can appear most frequently, report the smallest such sum.
+
+POINTS: 70
+
+/***********************************************/
+
+
+#include<iostream>
+using namespace std;
+int main() {
+int a;
+	int b;
+	int c;
+	int temp[81];
+	for (int i = 0; i < 81; i++) {
+		temp[i] = 0;
+	}
+	cin >> a;
+	cin >> b;
+	cin >> c;
+	for (int i = 1; i <= a; i++) {
+		for (int j = 1; j <= b; j++) {
+			for (int k = 1; k <= c; k++) {
+				
+					temp[i+j+k]++;
+					
+			}
+		}
+	}
+	int max = 0;
+	int minx = 0;
+	for (int i = 3; i < 81; i++) {
+		if (temp[i] > max) {
+			max = temp[i];
+			minx = i;
+		}
+	}
+	cout << minx;
+	
+	return 0;
+	}//现在是很害怕出什么幺蛾子
