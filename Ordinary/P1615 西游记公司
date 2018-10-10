@@ -1,0 +1,112 @@
+/******************************/
+
+事情是这样的：西游记中的孙沙猪（孙杀猪）三徒弟在西天取经之后开始进入厦门大学经贸系学习经济，在1个小时的学习后，他们用暴力手段毕业了。然后，他们创办了三个公司——“花果山生态旅游山庄集团公司”“高老庄猪肉美食城有限公司”“流沙河轮渡有限公司”。虽然这三家公司出自“经卷出版社”社长唐三藏的徒弟们，但是仍然保持着0元以下的财政收入。于是，他们想到了一个无聊的方法——向别人偷！是这样的：如果猪八戒知道孙悟空要偷猪八戒的平底锅，猪八戒就不能去抢沙和尚的保时捷。现在，作为猪八戒手下首席智士（智障人士）的你，要帮助既聪明又愚蠢的猪八戒用那种不正当的手段挽救这个公司！你可以这样做：你已经知道孙悟空什么时候要来偷猪八戒的东西，而猪八戒又要在什么时间去抢沙和尚的东西，又知道猪八戒每秒钟可以偷沙和尚1台笔记本电脑，帮猪八戒算一算，自己在有限的时间内能偷到沙和尚多少台电脑，使得他有足够的时间来防御大师兄。
+
+输入输出格式
+输入格式：
+第一行：时:分:秒（表示猪八戒打算去偷沙和尚笔记本电脑的时间）
+
+第二行：时:分:秒（表示孙悟空打算去偷猪八戒平底锅的时间）
+
+注：时间可能有前导0，也有可能没有。
+
+第三行：猪八戒每秒可以偷沙和尚几台笔记本电脑
+
+确保第一行的时间要比第二行的时间来得早。
+
+输出格式：
+一个整数，有可能大于int(2^31-2)，表示猪八戒能偷沙和尚笔记本的个数
+
+输入输出样例
+输入样例#1： 复制
+00:0:00
+0:00:10
+10
+
+
+
+
+
+
+
+/****************************/
+
+#include <cstdio>
+#include <iostream>
+using namespace std;
+long long a,b,c,x,y,z,t;
+char m;
+int main()         //看了答案后，深深被伤害了，这不就是脑筋急转弯么。。。。。
+{
+cin>>a>>m>>b>>m>>c>>x>>m>>y>>m>>z>>t; 读入
+cout<<((x-a)*3600+(y-b)*60+(z-c))*t; 时分秒的转换兼输出
+} 
+//下面是我写的，不知道这么回事就是有一个ac不了
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+
+int  getResult(string begin) {
+	int size = begin.size();
+	int tmp[2];
+	int count = 0;
+	for (int i = 0; i < size; i++) {
+		if (begin[i] == ':') {
+			tmp[count] = i;
+			count++;
+		}
+	}
+
+	long long  b1, b2, b3;
+	if (tmp[0] == 2) {
+		b1 = (begin[0] - '0') * 10 + (begin[1] - '0');
+
+	}
+	else {
+		b1 = begin[0] - '0';
+
+	}
+	if (tmp[1] - tmp[0] == 3) {
+		b2 = (begin[tmp[0] + 1] - '0') * 10 + (begin[tmp[0] + 2] - '0');
+
+	}
+	else if (tmp[1] - tmp[0] == 2) {
+		b2 = begin[tmp[0] + 1] - '0';
+
+	}
+
+	if (size - 1 - tmp[1] == 1) {
+		b3 = begin[tmp[1] + 1] - '0';
+
+
+	}
+	else {
+		b3 = (begin[tmp[1] + 1] - '0') * 10 + (begin[tmp[1] + 2] - '0');
+
+
+	}
+	return 3600 * b1 + b2 * 60 + b3;
+}
+int main() {
+	int num;
+	string begin = "";
+	char a;
+	while ((a = getchar()) != '\n') {
+
+		begin = begin + a;
+	}
+	string end = "";
+	char b;
+	while ((b = getchar()) != '\n') {
+
+		end = end + b;
+	}
+	cin >> num;
+	long long  tmp1 = getResult(begin);
+	long long  tmp2 = getResult(end);
+	long long  res = (tmp2 - tmp1)*num;
+	cout << res;
+
+	return 0;
+
+}
